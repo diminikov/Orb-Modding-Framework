@@ -28,25 +28,6 @@ namespace OMF
             }
         }
 
-        /// <summary>
-        /// Gets the resource with the specified name
-        /// </summary>
-        /// <param name="name">Name of the resource</param>
-        /// <returns></returns>
-        public static ResourceSO GetResourceSO(string name)
-        {
-            ResourceSO res = Resources.LoadAll<ResourceSO>("").ToList().Find(x => x.displayName == name);
-            if(res != null)
-            {
-                return res;
-            }
-            else
-            {
-                Debug.Log("Failed to find Resource: " + name);
-                return null;
-            }
-            
-        }
     }
 }
 

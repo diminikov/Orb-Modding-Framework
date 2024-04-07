@@ -32,6 +32,11 @@ namespace OMF
             GameManager GameManager = OMFUtils.GetManager<GameManager>();
             ViewManager ViewManager = OMFUtils.GetManager<ViewManager>();
 
+            UpgradeListVariable magic = (UpgradeListVariable)ViewManager.coreViews.Find(x => x.displayName == "Magic").relevantLists.Find(x => x.name == "MagicScreenUpgrades");
+
+
+            GameManager.allUpgrades.isStatic = false;
+            magic.isStatic = false;
             foreach (var u in _AddedUpgrades)
             {
                 if (GameManager.allUpgrades.Find(x => x.GetGuid() == u.GetGuid()))
@@ -41,15 +46,12 @@ namespace OMF
                 }
                 u.RegisterObject();
 
-                GameManager.allUpgrades.isStatic = false;
                 GameManager.allUpgrades.Add(u);
-                GameManager.allUpgrades.isStatic = true;
 
-                UpgradeListVariable magic = (UpgradeListVariable)ViewManager.coreViews.Find(x => x.displayName == "Magic").relevantLists.Find(x => x.name == "MagicScreenUpgrades");
-                magic.isStatic = false;
                 magic.Add(u);
-                magic.isStatic = true;
             }
+            magic.isStatic = true;
+            GameManager.allUpgrades.isStatic = true;
 
         }
     }

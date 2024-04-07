@@ -27,7 +27,23 @@ namespace OMF
         /// </summary>
         public static void PreStartGame(Action<GameManager> orig, GameManager self)
         {
+            Debug.Log("OMF: Registering resource types");
+            ResourceType.AddRegisteredResourceTypes();
+
+            Debug.Log("OMF: Registering resources");
+            Resource.AddRegisteredResources();
+
+            Debug.Log("OMF: Registering upgrades");
             Upgrade.AddRegisteredUpgrades();
+
+            Debug.Log("OMF: Registering glyphs");
+            Glyph.AddRegisteredGlyphs();
+
+            Debug.Log("OMF: Registering spell types");
+            SpellType.AddRegisteredSpellTypes();
+
+            Debug.Log("OMF: Registering spell recipes");
+            SpellRecipe.AddRegisteredSpellRecipes();
             orig(self);
         }
     }
